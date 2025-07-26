@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Bakery POS</title>
+  <!-- CSS STYLES -->
+  <link rel         ="stylesheet"               href    ="style-pos.css"  />
+  <link rel         ="stylesheet"               href    ="style-darkmode.css"  />
+  <meta name        ="theme-color"              content ="#095932"        />
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; 
+               style-src 'self' 'unsafe-inline'; 
+               script-src 'self' 'unsafe-inline' 'unsafe-eval';">
+
+</head>
+
+<body>
+
+  <header>
+
+    <button id="darkModeToggle" class="icon-btn">
+      <img id="darkModeIcon" src="icons/moon.svg" alt="Moon" class="icon" style="filter: brightness(0) invert(1);">
+    </button>
+
+    <!-- TOGGLE SIDEBAR BUTTON -->
+    <button onclick="toggleSidebar()" class="header-menu" id="menuToggleBtn">
+      <img src="icons/menu.svg" alt="Menu" class="icon" />
+    </button>
+
+    <!-- SIDEBAR PANEL -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-logo">
+        <img src="images/logo.png" alt="Logo" class="logo" />
+      </div>
+
+      <input type="file"    id="excelFile"       accept=".xlsx"  style="display: none; margin-bottom: 50px;"          />
+        <label              for="excelFile"  class="sidebar-btn"   > IMPORT MASTER LIST     </label>
+
+      <!-- SIDEBAR BUTTONS -->
+      <div class="sidebar-buttons">  
+        <button class="sidebar-btn" onclick="exportSalesRecord()"  > EXPORT SALES RECORD    </button>
+        <button class="sidebar-btn" onclick="exportSalesSummary()" > EXPORT SALES SUMMARY   </button>
+        <button class="sidebar-btn" onclick="endDay()"             > END DAY                </button>
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- POS CONTAINER -->
+  <main class="pos-container">
+
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-sidebar">
+      <button class="filter-btn active" data-category="all"     > All     </button>
+      <button class="filter-btn"        data-category="pastry"  > Pastry  </button>
+      <button class="filter-btn"        data-category="grocery" > Grocery </button>
+      <button class="filter-btn"        data-category="frozen"  > Frozen  </button>
+      <button class="filter-btn"        data-category="others"  > Others  </button>
+    </aside>
+
+    <!-- PRODUCT LIST -->
+    <section class="product-panel">
+      <div class="product-header">
+
+        <h3>PRODUCTS</h3>
+        
+        <input type="text" id="productSearch" placeholder="Search product..."/>
+
+        <button class="icon-btn" onclick="clearSearch()">
+          <img src="icons/delete-filled.svg" alt="Clear" class="icon" />
+        </button>
+
+      </div>
+
+      <div class="product-grid" id="productGrid"> <!-- JS WILL POPULATE BUTTONS HERE --> </div>
+    </section>
+
+    <!-- ORDER SUMMARY -->
+    <section class="order-panel" id="orderPanel">
+      
+      <h3>CURRENT ORDER</h3>
+      
+      <hr>
+        <ul id="orderList"></ul>
+        <!-- TOTAL -->
+        <div class="total-output"> <h4> Total: <span id="total"> 0 </span> PHP </h4> </div>
+
+        <!-- INPUT -->
+        <input type="number" class="cash-input" id="cashInput" placeholder="Enter amount..." oninput="calculateChange()" />
+
+        <!-- CHANGE -->
+        <h4 style="font-size: 20px;"> CHANGE: <span id="change"> 0 </span> PHP </h4>   
+      <hr>
+
+      <!-- BUTTONS -->
+      <button class="order-btn" onclick="saveTransaction()" > Checkout    </button>
+      <button class="order-btn" onclick="clearOrder()"      > Clear Order </button>
+
+    </section>
+
+  </main>
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="xlsx.full.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>

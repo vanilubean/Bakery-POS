@@ -1,0 +1,577 @@
+/* FONTS */
+
+@font-face {
+  font-family: 'Neuton-Bold';
+  src: url('fonts/Neuton-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'CaviarDreams-Bold';
+  src: url('fonts/CaviarDreams-Bold.ttf') format('truetype');
+}
+
+/* MAIN */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* REMOVES THE HIGHLIGHT EFFECT */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.icon {
+  filter: invert(36%) sepia(98%) saturate(744%) hue-rotate(355deg) brightness(95%) contrast(102%);
+}
+
+body {
+  font-family: 'Neuton-Bold', serif;
+  color: #ffcc33;
+  background-color: #e0e0e0;
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+body, html {
+  padding: 0;
+  padding-top: 25px;
+  margin: 0;
+
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+/* HEADER */
+header {
+  background-color: #0e432a;
+  color: #eeba2b;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  
+  width: 100%;
+  padding: 15px 50px;
+
+  position: fixed; /* DO NOT remove LOL */
+  top: 0;
+  z-index: 10;
+
+  display: flex;  
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.header-menu {
+  background: none;
+  filter: brightness(0) invert(1);
+  
+  width: 50px;
+  height: 50px;
+  border:none;
+ 
+  position: absolute;
+  right: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 25px;
+  
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 3;
+}
+
+/* SIDE BAR */
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 1;
+
+  top: 0;
+  right: -500px;
+  width: 500px;
+  height: 100%;
+
+  background-color: #0e432a;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  transition: right 0.3s ease;
+  
+  padding: 20px;
+  padding-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-btn {
+  color: #0e432a;
+  background-color: white;
+  font-size: 15px;
+  font-family: 'CaviarDreams-Bold';
+
+  border: none;
+  border-radius: 50px;
+
+  width: 50%;
+  height: 50px;
+  padding: 10px;
+  
+  margin-inline: 5px;
+  margin-bottom: 10px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-btn:hover {
+  background-color: #d8d8d8;
+}
+
+.sidebar-logo {
+  width: 150px;
+  height: 150px;
+
+  margin: 30px auto;
+  margin-bottom: 30px;
+  
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sidebar-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* LAYOUT */
+.pos-container {
+  padding: 20px;
+  width: 100vw;
+  height: calc(100vh - 80px);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+}
+
+/* PRODUCT SECTION */
+.product-panel {
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  padding: 20px;
+  border-radius: 12px;
+
+  flex: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 150px;
+  transition: background-color 0.3s ease;
+}
+
+.product-header {
+  font-family: 'CaviarDreams-Bold';
+  font-size: 25px;
+  color: #0e432a;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 5px;
+  margin-bottom: 50px;
+  margin-left: 75px;
+}
+
+/* SEARCH BAR */
+#productSearch {
+  font-size: 1rem;
+  font-family: 'CaviarDreams-Bold';
+  color: #0e432a;
+
+  padding: 10px;
+  padding-left: 25px;
+  height: 50px;
+  width: 200px;
+  max-width: 500px;
+  
+  border-radius: 50px;
+  border: 4px solid #0e432a;
+  transition: background-color 0.3s ease;
+}
+
+#productSearch:focus {
+  color: #c85103;
+  border: 4px solid #c85103;
+  outline: none;
+  transform: scale(1.05);
+}
+
+.product-grid {
+  padding: 0 20px;
+  padding-left: 75px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  overflow-x: hidden;
+}
+
+.product-grid button {
+  font-size: 13px;
+  font-family: 'CaviarDreams-Bold';
+  color: #0e432a;
+  border: 4px solid #0e432a;
+  background-color: none;
+  
+  width: 100%;
+  height: 75px;
+  padding: 7.5px;
+  border-radius: 50px;
+
+  margin: 8px;
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-grid button:hover {
+  color: white;
+  border: 4px solid #c85103;
+  background-color: #c85103;
+}
+
+/* FILTER SECTION */
+.filter-sidebar {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: none;
+
+  height: 100%;
+  gap: 5px;
+  padding: 20px 10px; 
+  
+  margin-right: -100px;
+  margin-top: 50px;
+}
+
+.filter-btn {  
+  font-family: 'CaviarDreams-Bold';
+  color: white;
+  background-color: #0e432a;
+
+  padding: 10px;
+  width: 100px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  
+  cursor: pointer;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background-color: #c85103; 
+}
+
+/* ORDER SECTION */
+
+hr {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  margin-top: 20px;
+}
+
+.order-panel {
+  font-size: 25px;
+  font-family: 'CaviarDreams-Bold';
+  color: #0e432a;
+  background-color: #ffffff;
+
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 75px;
+
+  flex: 1;
+
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+.order-panel ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+#orderList {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-item {
+  font-size: 17.5px;
+  position: relative;
+  transition: opacity 0.5s ease, margin 0.5s ease;
+}
+
+.swiped-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.swiped-right {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.order-btn {
+  font-family: 'CaviarDreams-Bold';
+  color: white;
+  background-color: #0e432a;
+
+  border: none;
+  border-radius: 50px;
+
+  width: 80%;
+  height: 60px;
+  padding: 15px;
+  margin-top: 20px;
+  
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.order-btn:active {
+  background-color: #c85103;
+}
+
+@media (max-width: 768px) {
+  .pos-container {
+    flex-direction: column;
+  }
+}
+
+/* ORDER LIST */
+
+.order-item {
+  font-family: 'CaviarDreams-Bold';
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+
+  gap: 10px;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.left-group, .right-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* CHECK OUT PANEL */
+
+.total-panel {
+  font-size: 25px;
+  font-family: 'CaviarDreams-Bold';
+  color: white;
+  background-color: #0e432a;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  flex: 1;
+  height: 250px;
+
+  padding: 20px;
+  padding-top: 30px;
+
+  border-radius: 12px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.total-output { 
+  font-size: 100%;
+  font-family: 'CaviarDreams-Bold';
+  color: white;
+  background-color: #0e432a;
+
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+.cash-input {
+  font-size: 1rem;
+  font-family: 'CaviarDreams-Bold';
+  color: #0e432a;
+  border: 4px solid #c85103;
+  border-radius: 50px;
+
+  width: 75%;
+  height: 50px;
+  padding: 15px;
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+  
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.cash-input:focus {
+  color: #c85103;
+  border: 4px solid #c85103;
+  outline: none;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ORDER ACTION BUTTONS */
+
+.product-name {
+  font-weight: bold; 
+  text-align: left;
+  margin-right: 5px;
+}
+
+.icon-btn {
+  background: none;
+  background-color: none;
+  
+  width: 50px;
+  height: 50px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transition: transform 0.3 ease;
+  transition: background-color .3 ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.05);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: none;
+  border: none;
+}
+
+.qty {
+  margin: 0 4px;
+  text-align: center;
+
+  width: 14px;
+  height: 14px;
+  min-width: 20px;
+}
+
+.qty-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.price {
+  width: 100%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.qty-input {
+  font-size: 1rem;
+  font-family: 'CaviarDreams-Bold';
+  color: #0e432a;
+  border: 4px solid #0e432a;
+  border-radius: 50px;
+
+  width: 100px;
+  height: 50px;
+  padding: 15px;
+  
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.qty-input:focus {
+  outline: none;
+  color: #c85103;
+  border: 4px solid #c85103;
+}
+
+.qty-input::-webkit-outer-spin-button, qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+/* i just realized we are 1 color (red) away from being 7/11 */
